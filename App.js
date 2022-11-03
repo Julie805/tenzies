@@ -7,6 +7,7 @@ export default function App() {
 
     const [dice, setDice] = React.useState(allNewDice())
     const [tenzies, setTenzies] = React.useState(false)
+    const [count, setCount] = React.useState(1)
     
     React.useEffect(() => {
         const allHeld = dice.every(die => die.isHeld)
@@ -45,9 +46,11 @@ export default function App() {
                     die :
                     generateNewDie()
             }))
+            setCount(count + 1)
         } else {
             setTenzies(false)
             setDice(allNewDice())
+            setCount(1)
         }
     }
     
@@ -81,7 +84,7 @@ export default function App() {
                 className="roll-dice" 
                 onClick={rollDice}
             >
-                {tenzies ? "New Game" : "Roll"}
+                {tenzies ? "New Game" : `Roll ${count}`}
             </button>
         </main>
     )
